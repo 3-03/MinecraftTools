@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="3D Редактор тримов Minecraft — примеряйте отделку брони на персонажа и генерируйте команды /give.">
+    <title>Шаблоны тримов — Minecraft Tools</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="tool-styles.css?v=51">
+</head>
+
+<body>
+
+    <!-- Space Background -->
+    <div class="bg-scene">
+        <div class="bg-blob bg-blob--a"></div>
+        <div class="bg-blob bg-blob--b"></div>
+        <div class="bg-blob bg-blob--c"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a href="../index.html" class="site-header__logo">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+                <span>Minecraft Tools</span>
+            </a>
+            <nav class="site-header__nav">
+                <a href="../index.html">Все инструменты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page tool-page--wide">
+        <!-- Back Button -->
+        <a href="../index.html" class="tool-back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+            </svg>
+            <span>Назад к инструментам</span>
+        </a>
+
+        <div class="tool-page__header">
+            <p class="tool-page__label">Дизайнер брони 3D</p>
+            <h1 class="tool-page__title">Шаблоны тримов</h1>
+            <p class="tool-page__subtitle">Комбинируйте отделку брони и примеряйте её в реальном времени на
+                интерактивной 3D-модели персонажа.</p>
+        </div>
+
+        <div class="editor-layout">
+            <!-- Left panel: Interactive 3D Preview & Commands -->
+            <div class="editor-card preview-board">
+                <!-- Large 3D Visualizer Canvas Wrapper -->
+                <div class="visualizer-canvas visualizer-canvas--3d" id="visualizer-canvas">
+                    <div class="visualizer-glow"></div>
+                    <canvas id="skin-viewer-canvas"></canvas>
+                </div>
+
+                <!-- Crafting ingredients info -->
+                <div class="ingredients-info" id="ingredients-list">
+                    <!-- Injected via JS -->
+                </div>
+
+                <!-- Minecraft command panel -->
+                <div class="command-board">
+                    <div class="command-board__header">
+                        <span class="command-label">Команда /give</span>
+                        <div class="version-segmented">
+                            <button class="ver-btn active" data-ver="new">1.20.5+</button>
+                            <button class="ver-btn" data-ver="old">1.20 – 1.20.4</button>
+                        </div>
+                    </div>
+                    <div class="command-box">
+                        <code
+                            id="command-text">/give @p diamond_chestplate[trim={material:"minecraft:gold",pattern:"minecraft:silence"}] 1</code>
+                        <button class="copy-btn copy-btn--small" id="copy-command-btn">
+                            <span id="copy-btn-text">Копировать</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right panel: Control Board (Bento style card) -->
+            <div class="editor-card control-board">
+                <!-- Character & Skin Control -->
+                <div class="editor-section">
+                    <label class="control-label">Персонаж и Скин</label>
+                    <div class="character-controls" style="display: flex; gap: 12px; align-items: center;">
+                        <label class="upload-btn-label"
+                            style="flex: 1; margin: 0; padding: 12px; display: flex; align-items: center; justify-content: center; gap: 8px;"
+                            title="Загрузить свой скин (.png)">
+                            <input type="file" id="skin-upload" accept="image/png">
+                            <img src="https://cdn.jsdelivr.net/gh/InventivetalentDev/minecraft-assets@1.20.1/assets/minecraft/textures/item/name_tag.png"
+                                style="width: 20px; height: 20px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));">
+                            <span style="font-size: 0.75rem;">Загрузить свой скин</span>
+                        </label>
+                        <div class="segmented-control" style="flex: 1.2;">
+                            <button class="anim-btn" data-anim="idle" title="Стойка"
+                                style="display: flex; align-items: center; justify-content: center; gap: 4px;">
+                                <img src="https://cdn.jsdelivr.net/gh/InventivetalentDev/minecraft-assets@1.20.1/assets/minecraft/textures/item/armor_stand.png"
+                                    style="width: 20px; height: 20px; object-fit: contain;">
+                                <span>Стойка</span>
+                            </button>
+                            <button class="anim-btn active" data-anim="walk" title="Ходьба"
+                                style="display: flex; align-items: center; justify-content: center; gap: 4px;">
+                                <img src="https://cdn.jsdelivr.net/gh/InventivetalentDev/minecraft-assets@1.20.1/assets/minecraft/textures/item/iron_boots.png"
+                                    style="width: 20px; height: 20px; object-fit: contain;">
+                                <span>Ходьба</span>
+                            </button>
+                            <button class="anim-btn" data-anim="run" title="Бег"
+                                style="display: flex; align-items: center; justify-content: center; gap: 4px;">
+                                <img src="https://cdn.jsdelivr.net/gh/InventivetalentDev/minecraft-assets@1.20.1/assets/minecraft/textures/item/diamond_boots.png"
+                                    style="width: 20px; height: 20px; object-fit: contain;">
+                                <span>Бег</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Part Selector Segmented Control -->
+                <div class="editor-section">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <label class="control-label" style="margin-bottom: 0;">Настройка элементов брони</label>
+                        <div style="display: flex; gap: 8px;">
+                            <button id="share-btn" class="copy-btn copy-btn--small"
+                                style="margin: 0; padding: 4px 10px; background: rgba(255,255,255,0.1); border: none; color: var(--ink);">🔗
+                                Поделиться</button>
+                            <button id="randomize-btn" class="copy-btn copy-btn--small"
+                                style="margin: 0; padding: 4px 10px; background: rgba(255,255,255,0.1); border: none; color: var(--ink);">🎲
+                                Рандом</button>
+                        </div>
+                    </div>
+                    <div class="segmented-control" style="flex-wrap: wrap;">
+                        <button class="part-btn" data-part="all" title="Всё сразу"
+                            style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;">
+                            <img src="https://cdn.jsdelivr.net/gh/InventivetalentDev/minecraft-assets@1.20.1/assets/minecraft/textures/item/knowledge_book.png"
+                                alt="Всё сразу" style="width: 24px; height: 24px; object-fit: contain;">
+                            <span style="font-size: 0.65rem; line-height: 1;">Всё сразу</span>
+                        </button>
+                        <button class="part-btn" data-part="helmet" id="tab-helmet" title="Шлем">
+                            <img src="https://cdn.jsdelivr.net/gh/InventivetalentDev/minecraft-assets@1.20.1/assets/minecraft/textures/item/netherite_helmet.png"
+                                alt="Шлем" style="width: 28px; height: 28px; object-fit: contain;">
+                        </button>
+                        <button class="part-btn active" data-part="chestplate" id="tab-chestplate" title="Нагрудник">
+                            <img src="https://cdn.jsdelivr.net/gh/InventivetalentDev/minecraft-assets@1.20.1/assets/minecraft/textures/item/netherite_chestplate.png"
+                                alt="Нагрудник" style="width: 28px; height: 28px; object-fit: contain;">
+                        </button>
+                        <button class="part-btn" data-part="leggings" id="tab-leggings" title="Поножи">
+                            <img src="https://cdn.jsdelivr.net/gh/InventivetalentDev/minecraft-assets@1.20.1/assets/minecraft/textures/item/netherite_leggings.png"
+                                alt="Поножи" style="width: 28px; height: 28px; object-fit: contain;">
+                        </button>
+                        <button class="part-btn" data-part="boots" id="tab-boots" title="Ботинки">
+                            <img src="https://cdn.jsdelivr.net/gh/InventivetalentDev/minecraft-assets@1.20.1/assets/minecraft/textures/item/netherite_boots.png"
+                                alt="Ботинки" style="width: 28px; height: 28px; object-fit: contain;">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Armor Material Grid -->
+                <div class="editor-section">
+                    <label class="control-label">Материал брони</label>
+                    <div class="swatch-grid" id="armor-material-grid">
+                        <!-- Swatches injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Leather Color Picker (Hidden by default) -->
+                <div class="editor-section" id="leather-color-section" style="display: none;">
+                    <label class="control-label">Цвет кожи и Крафт</label>
+                    <div class="leather-color-panel">
+                        <div class="leather-color-input-wrapper">
+                            <div class="leather-color-preview" id="leather-color-preview"
+                                style="background-color: #a06540;">
+                                <input type="color" id="leather-color-picker" value="#a06540">
+                            </div>
+                            <input type="text" id="leather-hex-input" class="hex-input" value="#A06540">
+                        </div>
+                        <div class="leather-dye-recipe" id="leather-dye-recipe">
+                            <!-- Injected via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trim Pattern Grid -->
+                <div class="editor-section">
+                    <label class="control-label">Узор отделки (Trim Pattern)</label>
+                    <div class="swatch-grid" id="trim-pattern-grid">
+                        <!-- Swatches injected via JS -->
+                    </div>
+                </div>
+
+
+                <!-- Trim Material Grid -->
+                <div class="editor-section">
+                    <label class="control-label">Материал отделки</label>
+                    <div class="swatch-grid" id="trim-material-grid">
+                        <!-- Swatches injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="editor-row" style="margin-top: 24px;">
+            <div class="editor-card" style="width: 100%;">
+                <!-- All Templates Duplication Section -->
+                <div class="editor-section duplication-section" id="duplication-section" style="margin-bottom: 0;">
+                    <label class="control-label">Копирование шаблонов</label>
+                    <div class="all-dupes-grid" id="all-dupes-grid">
+                        <!-- Dupe cards injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="site-footer">
+        <p>Сделано при поддержке · <a href="https://github.com/3-03" target="_blank" rel="noopener noreferrer">3-03</a>
+        </p>
+    </footer>
+
+    <!-- Trims Logic Script (type module for skinview3d import) -->
+    <script type="module" src="trims.js?v=59"></script>
+</body>
+
+</html>

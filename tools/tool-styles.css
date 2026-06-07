@@ -1,0 +1,1089 @@
+/* ═══════════════════════════════════════════════════════════
+   Tool page — Apple Pro Design System
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+    --nether-red: #ff453a;
+    --nether-red-soft: rgba(255, 69, 58, 0.1);
+    --nether-red-border: rgba(255, 69, 58, 0.2);
+}
+
+.tool-page {
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    text-align: left;
+}
+
+/* Back Button */
+.tool-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink-secondary);
+    margin-bottom: 32px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 100px;
+    transition: all 0.3s var(--ease);
+}
+.tool-back:hover {
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateX(-2px);
+}
+
+.tool-back svg {
+    transition: transform 0.3s var(--ease);
+}
+.tool-back:hover svg {
+    transform: translateX(-2px);
+}
+
+/* Header */
+.tool-page__header {
+    margin-bottom: 40px;
+}
+
+.tool-page__label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ink-secondary);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.tool-page__title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 8px;
+}
+
+.tool-page__subtitle {
+    font-size: 0.95rem;
+    color: var(--ink-secondary);
+    line-height: 1.45;
+}
+
+/* ── Converter Console Card ──────────────────────────────── */
+.converter {
+    background: rgba(18, 18, 20, 0.4);
+    backdrop-filter: blur(var(--glass-blur-heavy));
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
+    border: 1px solid var(--glass-border);
+    border-top: 1px solid var(--glass-border-top);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    overflow: visible; /* to allow floating swap button */
+}
+
+/* Segmented Control Switcher */
+.segmented-control-wrapper {
+    padding: 20px 24px 0;
+}
+
+.segmented-control {
+    display: flex;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 3px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    position: relative;
+    z-index: 1; /* For stacking context */
+}
+
+/* Liquid glass sliding background */
+.segmented-sliding-bg {
+    position: absolute;
+    top: 3px;
+    bottom: 3px;
+    left: 0;
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1;
+    pointer-events: none;
+}
+
+
+.switch-btn, .part-btn {
+    flex: 1;
+    padding: 10px 16px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-secondary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 11px;
+    transition: all 0.3s var(--ease);
+    z-index: 2;
+}
+
+.switch-btn:hover, .part-btn:hover {
+    color: var(--ink);
+}
+
+.switch-btn.active, .part-btn.active {
+    color: var(--ink);
+}
+
+/* Body and Sides */
+.converter__body {
+    display: flex;
+    align-items: stretch;
+    position: relative;
+}
+
+.converter__side {
+    flex: 1;
+    padding: 30px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.converter__side--out {
+    background: rgba(255, 255, 255, 0.008);
+    border-left: 1px solid var(--glass-border);
+}
+
+.converter__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-secondary);
+    margin-bottom: 4px;
+}
+
+.legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+}
+
+.legend-dot--ow {
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+}
+
+.legend-dot--nether {
+    background: var(--nether-red);
+    box-shadow: 0 0 8px var(--nether-red);
+}
+
+/* Input / Output Fields */
+.fields-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field__label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--ink-secondary);
+}
+
+.field__input {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-sm);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 600;
+    outline: none;
+    transition: all 0.3s var(--ease);
+    -moz-appearance: textfield;
+}
+
+.field__input::-webkit-outer-spin-button,
+.field__input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.field__input::placeholder {
+    color: var(--ink-tertiary);
+}
+
+.field__input:focus {
+    border-color: var(--tint-border);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 0 0 3px rgba(41, 151, 255, 0.15);
+}
+
+/* Outputs */
+.field__output {
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink-tertiary);
+    min-height: 47px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s var(--ease);
+}
+
+/* Color dynamics based on dimension direction */
+.converter__side--out.target-nether .field__output.has-value {
+    color: var(--nether-red);
+    background: var(--nether-red-soft);
+    border-color: var(--nether-red-border);
+}
+
+.converter__side--out.target-ow .field__output.has-value {
+    color: var(--green);
+    background: var(--green-soft);
+    border-color: var(--green-border);
+}
+
+/* Connector & Swap Button */
+.converter__connector {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.converter__swap {
+    pointer-events: auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #1c1c1e;
+    border: 1px solid var(--glass-border);
+    color: var(--ink-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s var(--ease);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.converter__swap:hover {
+    color: var(--ink);
+    transform: scale(1.1) rotate(180deg);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8),
+                0 0 12px rgba(41, 151, 255, 0.2);
+}
+
+.converter__swap:active {
+    transform: scale(0.95) rotate(180deg);
+}
+
+/* Copy Pill Button */
+.copy-btn {
+    margin-top: 10px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-sm);
+    color: var(--ink-secondary);
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copy-btn:hover {
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.copy-btn.copied {
+    color: var(--green);
+    border-color: var(--green-border);
+    background: var(--green-soft);
+}
+
+/* Note */
+.tool-note {
+    margin-top: 24px;
+    font-size: 0.82rem;
+    color: var(--ink-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tool-note code {
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-xs);
+    color: var(--ink);
+    font-family: monospace;
+}
+
+/* Responsive Stack */
+@media (max-width: 600px) {
+    .tool-page {
+        padding-top: 24px;
+    }
+
+    .converter__body {
+        flex-direction: column;
+    }
+
+    .converter__side--out {
+        border-left: none;
+        border-top: 1px solid var(--glass-border);
+        background: rgba(255, 255, 255, 0.004);
+    }
+
+    .converter__connector {
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .converter__swap:hover {
+        transform: scale(1.1) rotate(270deg);
+    }
+    
+    .converter__swap:active {
+        transform: scale(0.95) rotate(270deg);
+    }
+}
+
+/* ── Armor Trim Editor Styles ────────────────────────────── */
+.tool-page--wide {
+    max-width: 1050px;
+}
+
+.editor-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 24px;
+    align-items: stretch;
+    margin-top: 16px;
+}
+
+.editor-card {
+    background: rgba(18, 18, 20, 0.4);
+    backdrop-filter: blur(var(--glass-blur-heavy));
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
+    border: 1px solid var(--glass-border);
+    border-top: 1px solid var(--glass-border-top);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    padding: 30px;
+}
+
+.preview-board {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.control-board {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.control-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink-secondary);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Swatches Grid */
+.swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+    gap: 10px;
+}
+
+.swatch {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.02);
+    background-size: 26px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s var(--ease);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.05);
+}
+
+.swatch:hover {
+    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1);
+}
+
+.swatch.active {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: var(--tint);
+    box-shadow: 0 0 12px rgba(41, 151, 255, 0.4),
+                0 0 0 1.5px var(--tint) inset;
+    transform: translateY(-2px) scale(1.02);
+}
+
+.swatch--glow.active {
+    box-shadow: 0 0 16px var(--glow-color, rgba(41, 151, 255, 0.4)),
+                0 0 0 1.5px var(--tint) inset;
+}
+
+/* Dropdown select */
+.select-field {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2386868b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+.select-field option {
+    background: var(--surface-raised);
+    color: var(--ink);
+}
+
+/* Visualizer Canvas */
+.visualizer-canvas {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    min-height: 550px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.visualizer-canvas--3d canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    outline: none;
+}
+
+.visualizer-glow {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--trim-color, rgba(255, 255, 255, 0.05)) 0%, transparent 70%);
+    filter: blur(50px);
+    opacity: 0.12;
+    pointer-events: none;
+    transition: all 0.4s var(--ease);
+}
+
+/* Character Skin Upload Button */
+.upload-btn-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-sm);
+    color: var(--ink-secondary);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+    text-align: center;
+}
+
+.upload-btn-label:hover {
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.upload-btn-label input[type="file"] {
+    display: none;
+}
+
+/* Segmented button adjustments for animations */
+.anim-btn {
+    flex: 1;
+    padding: 8px 12px;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ink-secondary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.25s var(--ease);
+    z-index: 2;
+}
+
+.anim-btn:hover {
+    color: var(--ink);
+}
+
+.anim-btn.active {
+    color: var(--ink);
+}
+
+/* Armor pieces checkboxes grid */
+.armor-toggle-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.armor-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink-secondary);
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s var(--ease);
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-sm);
+}
+
+.armor-check:hover {
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+.armor-check input {
+    display: none;
+}
+
+.custom-checkbox {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    position: relative;
+    transition: all 0.2s var(--ease);
+    flex-shrink: 0;
+}
+
+.armor-check input:checked + .custom-checkbox {
+    background: var(--tint);
+    border-color: var(--tint);
+}
+
+.armor-check input:checked + .custom-checkbox::after {
+    content: '';
+    position: absolute;
+    top: 2px; left: 5px;
+    width: 3px; height: 6px;
+    border: solid #fff;
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg);
+}
+
+/* Leather Color Panel */
+.leather-color-panel {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+}
+
+.leather-color-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.leather-color-preview {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.leather-color-preview input[type="color"] {
+    position: absolute;
+    top: -10px; left: -10px;
+    width: 50px; height: 50px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.hex-input {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: var(--ink);
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    width: 80px;
+    text-transform: uppercase;
+    transition: all 0.2s var(--ease);
+}
+
+.hex-input:focus {
+    outline: none;
+    border-color: var(--tint);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.leather-dye-recipe {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+    min-height: 24px;
+}
+
+.dye-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-secondary);
+}
+
+.dye-item img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* Ingredients */
+.ingredients-info {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    min-height: 175px;
+}
+
+.ingredients-header {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+}
+
+.ingredients-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ingredients-items li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+.ing-badge {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.ing-badge--armor {
+    background: var(--armor-color, #fff);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.ing-badge--template {
+    background: #af52de;
+    box-shadow: 0 0 6px #af52de;
+}
+
+.ing-badge--material {
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Command Box */
+.command-board {
+    margin-top: 20px;
+    min-height: 110px;
+    min-width: 0;
+}
+
+.command-board__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.command-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.version-segmented {
+    display: flex;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.ver-btn {
+    padding: 4px 8px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--ink-secondary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s var(--ease);
+    position: relative;
+    z-index: 2;
+}
+
+.ver-btn.active {
+    color: var(--ink);
+}
+
+.command-box {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    overflow: hidden;
+}
+
+.command-box code {
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.78rem;
+    color: var(--ink-secondary);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+}
+
+.copy-btn--small {
+    padding: 6px 12px;
+    font-size: 0.74rem;
+    flex-shrink: 0;
+    margin-top: 0;
+}
+
+/* Responsive columns stack */
+@media (max-width: 820px) {
+    .editor-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Premium Micro-Animations & Click Feedback ───────────────── */
+
+/* Button active click compression (spring-back effect) */
+.switch-btn:active, 
+.part-btn:active, 
+.anim-btn:active, 
+.ver-btn:active, 
+.copy-btn:active,
+.upload-btn-label:active,
+.armor-check:active {
+    transform: scale(0.96);
+    filter: brightness(0.9);
+}
+
+.swatch:active {
+    transform: scale(0.92);
+}
+
+/* Smooth spring transitions for active states */
+.switch-btn, 
+.part-btn, 
+.anim-btn, 
+.ver-btn, 
+.copy-btn, 
+.upload-btn-label,
+.armor-check {
+    transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1),
+                background-color 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                color 0.2s ease;
+}
+
+/* Segmented control transitions when active is set */
+.switch-btn.active, 
+.part-btn.active, 
+.anim-btn.active, 
+.ver-btn.active {
+    animation: tabPulse 0.35s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+@keyframes tabPulse {
+    0% {
+        transform: scale(0.96);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Checkboxes hover and toggle spring */
+.armor-check {
+    transform-origin: center;
+}
+.armor-check:hover {
+    transform: scale(1.02);
+}
+.armor-check input:checked + .custom-checkbox {
+    animation: checkboxCheck 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes checkboxCheck {
+    0% {
+        transform: scale(0.8);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Swatches transition enhancement */
+.swatch {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                background-color 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.swatch:hover {
+    transform: translateY(-3px) scale(1.05);
+}
+
+.swatch.active {
+    animation: swatchSelect 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes swatchSelect {
+    0% {
+        transform: scale(0.95);
+    }
+    70% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: translateY(-2px) scale(1.02);
+    }
+}
+
+/* Visualizer Canvas hover zoom/rotation suggestion */
+.visualizer-canvas--3d {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.visualizer-canvas--3d:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6), 
+                0 0 30px rgba(41, 151, 255, 0.05);
+}
+
+/* Duplication Panel (All Crafts) */
+.duplication-section {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.all-dupes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 16px;
+}
+
+.dupe-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dupe-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 8px;
+}
+
+.dupe-panel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    margin: 8px 0;
+}
+
+.inline-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: cover;
+    object-position: top;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    vertical-align: middle;
+}
+
+.dupe-info-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 6px 0;
+    font-size: 0.9rem;
+    color: var(--ink-secondary);
+}
+
+.crafting-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 40px);
+    grid-template-rows: repeat(3, 40px);
+    gap: 2px;
+    background: #8b8b8b;
+    padding: 6px;
+    border-radius: 4px;
+    box-shadow: inset 2px 2px 0px #373737, inset -2px -2px 0px #ffffff;
+}
+
+.crafting-slot {
+    width: 36px;
+    height: 36px;
+    background: #8b8b8b;
+    box-shadow: inset 2px 2px 0px #373737, inset -2px -2px 0px #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.crafting-slot img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    object-position: top;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.crafting-arrow {
+    font-size: 24px;
+    color: var(--ink-secondary);
+}
+
+.result-slot {
+    width: 48px;
+    height: 48px;
+}
+
+.result-slot img {
+    width: 40px;
+    height: 40px;
+}
+
+.item-count {
+    position: absolute;
+    bottom: -2px;
+    right: 2px;
+    font-size: 14px;
+    font-family: monospace, sans-serif;
+    color: white;
+    text-shadow: 2px 2px 0 #3f3f3f;
+    font-weight: bold;
+}

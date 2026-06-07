@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Minecraft Tools — премиальные инструменты для игроков. Конвертер координат, баннеры, тримы и другое.">
+    <title>Minecraft Tools</title>
+    <link rel="stylesheet" href="styles.css?v=63">
+</head>
+<body>
+
+    <!-- Space Background with Nebula Light Leaks -->
+    <div class="bg-scene">
+        <div class="bg-blob bg-blob--a"></div>
+        <div class="bg-blob bg-blob--b"></div>
+        <div class="bg-blob bg-blob--c"></div>
+    </div>
+
+    <!-- Apple-Style Navigation Bar -->
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a href="#" class="site-header__logo">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <span>Minecraft Tools</span>
+            </a>
+            <nav class="site-header__nav">
+                <a href="https://github.com/3-03" target="_blank" rel="noopener">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="main">
+        <p class="main__label">Minecraft Tools</p>
+        <h1 class="main__title">Твой идеальный арсенал.<br>Играй на новом уровне.</h1>
+
+
+        <!-- 3D Carousel Layout -->
+        <div class="carousel-container">
+            <div class="carousel-track">
+                
+                <!-- Slide 1: Coordinates -->
+                <div class="carousel-slide active" data-href="tools/coordinates.html">
+                    <div class="carousel-slide__content">
+                        <span class="carousel-slide__badge carousel-slide__badge--live">Live</span>
+                        <h2 class="carousel-slide__title">Конвертер координат</h2>
+                        <p class="carousel-slide__desc">Идеально точный перевод координат между Overworld и Nether.</p>
+                    </div>
+                    <div class="carousel-slide__image">
+                        <img src="https://cdn.jsdelivr.net/gh/InventivetalentDev/minecraft-assets@1.20.1/assets/minecraft/textures/item/compass_16.png" alt="Coords">
+                    </div>
+                </div>
+
+                <!-- Slide 2: Trims -->
+                <div class="carousel-slide next" data-href="tools/trims.html">
+                    <div class="carousel-slide__content">
+                        <span class="carousel-slide__badge carousel-slide__badge--live">Live</span>
+                        <h2 class="carousel-slide__title">Шаблоны тримов</h2>
+                        <p class="carousel-slide__desc">Интерактивный визуализатор и генератор команд для брони.</p>
+                    </div>
+                    <div class="carousel-slide__image">
+                        <img src="https://cdn.jsdelivr.net/gh/InventivetalentDev/minecraft-assets@1.20.1/assets/minecraft/textures/item/ward_armor_trim_smithing_template.png" alt="Trims">
+                    </div>
+                </div>
+
+                <!-- Slide 3: Banners -->
+                <div class="carousel-slide hidden-next">
+                    <div class="carousel-slide__content">
+                        <span class="carousel-slide__badge carousel-slide__badge--soon">Soon</span>
+                        <h2 class="carousel-slide__title">Редактор баннеров</h2>
+                        <p class="carousel-slide__desc">Проектирование узоров на флагах с экспортом команд.</p>
+                    </div>
+                    <div class="carousel-slide__image">
+                        <img src="tools/White_Banner.webp" alt="Banners">
+                    </div>
+                </div>
+
+                <!-- Slide 4: More -->
+                <div class="carousel-slide hidden-next">
+                    <div class="carousel-slide__content">
+                        <span class="carousel-slide__badge carousel-slide__badge--soon">Soon</span>
+                        <h2 class="carousel-slide__title">Другие утилиты</h2>
+                        <p class="carousel-slide__desc">Новые крутые инструменты уже находятся в разработке.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Carousel Controls -->
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" id="carousel-prev" aria-label="Previous">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <div class="carousel-indicators" id="carousel-indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                </div>
+                <button class="carousel-btn next" id="carousel-next" aria-label="Next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="site-footer">
+        <p>Сделано при поддержке · <a href="https://github.com/3-03" target="_blank" rel="noopener noreferrer">3-03</a></p>
+    </footer>
+
+    <script src="script.js?v=13"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Конвертер координат Overworld ↔ Nether для Minecraft. Быстро и точно.">
+    <title>Координаты — Minecraft Tools</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="tool-styles.css">
+</head>
+
+<body>
+
+    <!-- Space Background -->
+    <div class="bg-scene">
+        <div class="bg-blob bg-blob--a"></div>
+        <div class="bg-blob bg-blob--b"></div>
+        <div class="bg-blob bg-blob--c"></div>
+    </div>
+
+    <!-- Apple-Style Navigation Bar -->
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a href="../index.html" class="site-header__logo">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+                <span>Minecraft Tools</span>
+            </a>
+            <nav class="site-header__nav">
+                <a href="../index.html">Все инструменты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <!-- Back Button (Elegant Pill Arrow) -->
+        <a href="../index.html" class="tool-back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+            </svg>
+            <span>Назад к инструментам</span>
+        </a>
+
+        <div class="tool-page__header">
+            <p class="tool-page__label">Утилита координат</p>
+            <h1 class="tool-page__title">Координаты</h1>
+            <p class="tool-page__subtitle">Перевод координат между мирами. X и Z изменяются на коэффициент 8.</p>
+        </div>
+
+        <div class="converter">
+            <!-- Apple Segmented Control -->
+            <div class="segmented-control-wrapper">
+                <div class="segmented-control">
+                    <button class="switch-btn active" id="btn-ow">Overworld → Nether</button>
+                    <button class="switch-btn" id="btn-nether">Nether → Overworld</button>
+                    <div class="segmented-control__slider"></div>
+                </div>
+            </div>
+
+            <div class="converter__body">
+                <!-- Input Side -->
+                <div class="converter__side">
+                    <div class="converter__header" id="legend-input">
+                        <span class="legend-dot legend-dot--ow"></span>
+                        <span class="converter__title-text">Overworld</span>
+                    </div>
+                    <div class="fields-group">
+                        <div class="field">
+                            <label for="in-x" class="field__label">Координата X</label>
+                            <input type="number" id="in-x" class="field__input" placeholder="0">
+                        </div>
+                        <div class="field">
+                            <label for="in-y" class="field__label">Координата Y</label>
+                            <input type="number" id="in-y" class="field__input" placeholder="67">
+                        </div>
+                        <div class="field">
+                            <label for="in-z" class="field__label">Координата Z</label>
+                            <input type="number" id="in-z" class="field__input" placeholder="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Swap Capsule Button -->
+                <div class="converter__connector">
+                    <button class="converter__swap" id="swap-btn" aria-label="Свапнуть стороны">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="17 1 21 5 17 9" />
+                            <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+                            <polyline points="7 23 3 19 7 15" />
+                            <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Output Side -->
+                <div class="converter__side converter__side--out">
+                    <div class="converter__header" id="legend-output">
+                        <span class="legend-dot legend-dot--nether"></span>
+                        <span class="converter__title-text">Nether</span>
+                    </div>
+                    <div class="fields-group">
+                        <div class="field">
+                            <span class="field__label">Координата X</span>
+                            <div class="field__output" id="out-x">—</div>
+                        </div>
+                        <div class="field">
+                            <span class="field__label">Координата Y</span>
+                            <div class="field__output" id="out-y">—</div>
+                        </div>
+                        <div class="field">
+                            <span class="field__label">Координата Z</span>
+                            <div class="field__output" id="out-z">—</div>
+                        </div>
+                    </div>
+                    <button class="copy-btn" id="copy-btn" type="button">
+                        <span id="copy-text">Копировать всё</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <p class="tool-note">
+            <span>Правило расчета:</span> <code>nether = overworld ÷ 8</code> (высота Y сохраняется без изменений)
+        </p>
+    </main>
+
+    <footer class="site-footer">
+        <p>Сделано при поддержке · <a href="https://github.com/3-03" target="_blank" rel="noopener noreferrer">3-03</a>
+        </p>
+    </footer>
+
+    <script src="coordinates.js"></script>
+</body>
+
+</html>
